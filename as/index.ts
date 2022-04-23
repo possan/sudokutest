@@ -21,20 +21,20 @@ class Board {
 }
 
 let target: Board;
-let randomTable: u32[];
-let randomIndex : u32 = 0;
+// let randomTable: u32[];
+// let randomIndex : u32 = 0;
 
 function initRandomTable(): void {
-  randomTable = new Array<u32>(100);
-  for (var k = 0; k < 1000; k++) {
-    randomTable[k] = Math.trunc(Math.random() * 10000000) as u32;
-  }
+  // randomTable = new Array<u32>(100);
+  // for (var k = 0; k < 1000; k++) {
+  //   randomTable[k] = Math.trunc(Math.random() * 10000000) as u32;
+  // }
 }
 
 function random(): u32 {
-  // return Math.trunc(Math.random() * 10000000) as u32;
-  randomIndex++;
-  return randomTable[randomIndex % 100];
+  return Math.trunc(Math.random() * 10000000) as u32;
+  // randomIndex++;
+  // return randomTable[randomIndex % 100];
 }
 
 function createBoard(size: u32, groupsize: u32): Board {
@@ -42,7 +42,7 @@ function createBoard(size: u32, groupsize: u32): Board {
   return board;
 }
 
-function fillDefaultBoard(): void {
+function fillDefaultBoard(target: Board): void {
   let o: u32 = 0;
   const nbase: u32 = random() % target.fullsize;
   for (let r: u32 = 0; r < target.fullsize; r++) {
@@ -58,7 +58,7 @@ function fillDefaultBoard(): void {
   }
 }
 
-function _swapColumns(col1: u32, col2: u32): void {
+function _swapColumns(target: Board, col1: u32, col2: u32): void {
   // console.log('swap column group', col1, col2)
   let o1: u32 = col1;
   let o2: u32 = col2;
@@ -71,7 +71,7 @@ function _swapColumns(col1: u32, col2: u32): void {
   }
 }
 
-function _swapRows(row1: u32, row2: u32): void {
+function _swapRows(target: Board, row1: u32, row2: u32): void {
   // console.log('swap row group', row1, row2)
   let o1: u32 = row1 * target.fullsize;
   let o2: u32 = row2 * target.fullsize;
@@ -84,7 +84,7 @@ function _swapRows(row1: u32, row2: u32): void {
   }
 }
 
-function shuffleBoard(): void {
+function shuffleBoard(target: Board): void {
 
   let shuffles: u32 = target.fullsize * 2;
   while (shuffles-- > 0) {
@@ -95,7 +95,7 @@ function shuffleBoard(): void {
       let o1: u32 = rg1 * target.groupsize;
       let o2: u32 = rg2 * target.groupsize;
       for (let o: u32 = 0; o < target.groupsize; o++) {
-        _swapRows(o1, o2);
+        _swapRows(target, o1, o2);
         o1++;
         o2++;
       }
@@ -108,7 +108,7 @@ function shuffleBoard(): void {
       let o1: u32 = cg1 * target.groupsize;
       let o2: u32 = cg2 * target.groupsize;
       for (let o: u32 = 0; o < target.groupsize; o++) {
-        _swapColumns(o1, o2);
+        _swapColumns(target, o1, o2);
         o1++;
         o2++;
       }
@@ -120,7 +120,7 @@ function shuffleBoard(): void {
     let r2: u32 = rg + (random() % target.groupsize);
     if (r1 !== r2) {
       // console.log('swap row', r1, r2)
-      _swapRows(r1, r2);
+      _swapRows(target, r1, r2);
     }
 
     // shuffle in-group columns
@@ -129,7 +129,7 @@ function shuffleBoard(): void {
     let c2: u32 = cg + (random() % target.groupsize);
     if (c1 !== c2) {
       // console.log('swap column', c1, c2)
-      _swapColumns(c1, c2);
+      _swapColumns(target, c1, c2);
     }
   }
 }
@@ -141,8 +141,8 @@ export function randomizeOneBoardWasm(
   initRandomTable();
   let board = createBoard(size, groupsize);
   target = board;
-  fillDefaultBoard();
-  shuffleBoard();
+  fillDefaultBoard(board);
+  shuffleBoard(board);
   return board.cells;
 }
 
@@ -156,8 +156,8 @@ export function randomizeOneBoardWasmMultiple(
   do {
     board = createBoard(size, groupsize);
     target = board;
-    fillDefaultBoard();
-    shuffleBoard();
+    fillDefaultBoard(board);
+    shuffleBoard(board);
   } while (times-- > 0);
   return board.cells;
 }

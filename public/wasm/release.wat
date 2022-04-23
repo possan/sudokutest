@@ -1,9 +1,9 @@
 (module
- (type $i32_i32_=>_none (func (param i32 i32)))
  (type $i32_i32_=>_i32 (func (param i32 i32) (result i32)))
- (type $none_=>_none (func))
+ (type $i32_i32_=>_none (func (param i32 i32)))
  (type $i32_i32_i32_=>_none (func (param i32 i32 i32)))
  (type $i32_=>_none (func (param i32)))
+ (type $none_=>_none (func))
  (type $i32_=>_i32 (func (param i32) (result i32)))
  (type $none_=>_i32 (func (result i32)))
  (type $i32_i32_i32_i32_=>_none (func (param i32 i32 i32 i32)))
@@ -13,8 +13,6 @@
  (import "env" "abort" (func $~lib/builtins/abort (param i32 i32 i32 i32)))
  (import "env" "seed" (func $~lib/builtins/seed (result f64)))
  (global $as/index/target (mut i32) (i32.const 0))
- (global $as/index/randomTable (mut i32) (i32.const 0))
- (global $as/index/randomIndex (mut i32) (i32.const 0))
  (global $~lib/rt/itcms/total (mut i32) (i32.const 0))
  (global $~lib/rt/itcms/threshold (mut i32) (i32.const 0))
  (global $~lib/rt/itcms/state (mut i32) (i32.const 0))
@@ -29,26 +27,24 @@
  (global $~lib/math/random_state0_64 (mut i64) (i64.const 0))
  (global $~lib/math/random_state1_64 (mut i64) (i64.const 0))
  (global $~lib/math/random_state0_32 (mut i32) (i32.const 0))
- (global $~lib/memory/__stack_pointer (mut i32) (i32.const 18036))
+ (global $~lib/memory/__stack_pointer (mut i32) (i32.const 17980))
  (memory $0 1)
  (data (i32.const 1036) ",")
  (data (i32.const 1048) "\01\00\00\00\1c\00\00\00I\00n\00v\00a\00l\00i\00d\00 \00l\00e\00n\00g\00t\00h")
- (data (i32.const 1084) ",")
- (data (i32.const 1096) "\01\00\00\00\1a\00\00\00~\00l\00i\00b\00/\00a\00r\00r\00a\00y\00.\00t\00s")
- (data (i32.const 1132) "<")
- (data (i32.const 1144) "\01\00\00\00(\00\00\00A\00l\00l\00o\00c\00a\00t\00i\00o\00n\00 \00t\00o\00o\00 \00l\00a\00r\00g\00e")
- (data (i32.const 1196) "<")
- (data (i32.const 1208) "\01\00\00\00 \00\00\00~\00l\00i\00b\00/\00r\00t\00/\00i\00t\00c\00m\00s\00.\00t\00s")
- (data (i32.const 1324) "<")
- (data (i32.const 1336) "\01\00\00\00$\00\00\00I\00n\00d\00e\00x\00 \00o\00u\00t\00 \00o\00f\00 \00r\00a\00n\00g\00e")
- (data (i32.const 1388) ",")
- (data (i32.const 1400) "\01\00\00\00\14\00\00\00~\00l\00i\00b\00/\00r\00t\00.\00t\00s")
- (data (i32.const 1468) "<")
- (data (i32.const 1480) "\01\00\00\00\1e\00\00\00~\00l\00i\00b\00/\00r\00t\00/\00t\00l\00s\00f\00.\00t\00s")
- (data (i32.const 1532) "<")
- (data (i32.const 1544) "\01\00\00\00&\00\00\00~\00l\00i\00b\00/\00s\00t\00a\00t\00i\00c\00a\00r\00r\00a\00y\00.\00t\00s")
- (data (i32.const 1600) "\06\00\00\00 \00\00\00\00\00\00\00 ")
- (data (i32.const 1636) "$\01\00\00\00\00\00\00\02\01")
+ (data (i32.const 1084) "<")
+ (data (i32.const 1096) "\01\00\00\00&\00\00\00~\00l\00i\00b\00/\00s\00t\00a\00t\00i\00c\00a\00r\00r\00a\00y\00.\00t\00s")
+ (data (i32.const 1148) "<")
+ (data (i32.const 1160) "\01\00\00\00(\00\00\00A\00l\00l\00o\00c\00a\00t\00i\00o\00n\00 \00t\00o\00o\00 \00l\00a\00r\00g\00e")
+ (data (i32.const 1212) "<")
+ (data (i32.const 1224) "\01\00\00\00 \00\00\00~\00l\00i\00b\00/\00r\00t\00/\00i\00t\00c\00m\00s\00.\00t\00s")
+ (data (i32.const 1340) "<")
+ (data (i32.const 1352) "\01\00\00\00$\00\00\00I\00n\00d\00e\00x\00 \00o\00u\00t\00 \00o\00f\00 \00r\00a\00n\00g\00e")
+ (data (i32.const 1404) ",")
+ (data (i32.const 1416) "\01\00\00\00\14\00\00\00~\00l\00i\00b\00/\00r\00t\00.\00t\00s")
+ (data (i32.const 1484) "<")
+ (data (i32.const 1496) "\01\00\00\00\1e\00\00\00~\00l\00i\00b\00/\00r\00t\00/\00t\00l\00s\00f\00.\00t\00s")
+ (data (i32.const 1552) "\05\00\00\00 \00\00\00\00\00\00\00 ")
+ (data (i32.const 1588) "$\01")
  (export "addWwo" (func $as/index/addWwo))
  (export "randomizeOneBoardWasm" (func $as/index/randomizeOneBoardWasm))
  (export "randomizeOneBoardWasmMultiple" (func $as/index/randomizeOneBoardWasmMultiple))
@@ -77,17 +73,11 @@
    local.get $0
    call $~lib/rt/itcms/__visit
   end
-  global.get $as/index/randomTable
-  local.tee $0
-  if
-   local.get $0
-   call $~lib/rt/itcms/__visit
-  end
-  i32.const 1344
+  i32.const 1360
   call $~lib/rt/itcms/__visit
   i32.const 1056
   call $~lib/rt/itcms/__visit
-  i32.const 1152
+  i32.const 1168
   call $~lib/rt/itcms/__visit
   global.get $~lib/rt/itcms/pinSpace
   local.tee $1
@@ -200,12 +190,12 @@
    i32.const 1
   else
    local.get $2
-   i32.const 1600
+   i32.const 1552
    i32.load
    i32.gt_u
    if
-    i32.const 1344
-    i32.const 1408
+    i32.const 1360
+    i32.const 1424
     i32.const 22
     i32.const 28
     call $~lib/builtins/abort
@@ -214,7 +204,7 @@
    local.get $2
    i32.const 3
    i32.shl
-   i32.const 1604
+   i32.const 1556
    i32.add
    i32.load
    i32.const 32
@@ -632,10 +622,10 @@
   if
    unreachable
   end
-  i32.const 18048
+  i32.const 17984
   i32.const 0
   i32.store
-  i32.const 19616
+  i32.const 19552
   i32.const 0
   i32.store
   loop $for-loop|0
@@ -646,7 +636,7 @@
     local.get $1
     i32.const 2
     i32.shl
-    i32.const 18048
+    i32.const 17984
     i32.add
     i32.const 0
     i32.store offset=4
@@ -664,7 +654,7 @@
       i32.add
       i32.const 2
       i32.shl
-      i32.const 18048
+      i32.const 17984
       i32.add
       i32.const 0
       i32.store offset=96
@@ -682,13 +672,13 @@
     br $for-loop|0
    end
   end
-  i32.const 18048
-  i32.const 19620
+  i32.const 17984
+  i32.const 19556
   memory.size
   i32.const 16
   i32.shl
   call $~lib/rt/tlsf/addMemory
-  i32.const 18048
+  i32.const 17984
   global.set $~lib/rt/tlsf/ROOT
  )
  (func $~lib/rt/itcms/step (result i32)
@@ -767,7 +757,7 @@
      local.set $0
      loop $while-continue|0
       local.get $0
-      i32.const 18036
+      i32.const 17980
       i32.lt_u
       if
        local.get $0
@@ -846,7 +836,7 @@
     i32.load offset=4
     drop
     local.get $0
-    i32.const 18036
+    i32.const 17980
     i32.lt_u
     if
      local.get $0
@@ -869,7 +859,7 @@
      i32.const 4
      i32.add
      local.tee $0
-     i32.const 18036
+     i32.const 17980
      i32.ge_u
      if
       global.get $~lib/rt/tlsf/ROOT
@@ -1029,8 +1019,8 @@
   i32.const 1073741820
   i32.gt_u
   if
-   i32.const 1152
-   i32.const 1488
+   i32.const 1168
+   i32.const 1504
    i32.const 458
    i32.const 29
    call $~lib/builtins/abort
@@ -1186,8 +1176,8 @@
   i32.const 1073741804
   i32.ge_u
   if
-   i32.const 1152
-   i32.const 1216
+   i32.const 1168
+   i32.const 1232
    i32.const 260
    i32.const 31
    call $~lib/builtins/abort
@@ -1275,57 +1265,50 @@
   memory.fill
   local.get $1
  )
- (func $~lib/rt/itcms/__link (param $0 i32) (param $1 i32)
+ (func $as/index/Board#set:cells (param $0 i32) (param $1 i32)
+  local.get $0
   local.get $1
-  i32.eqz
-  if
-   return
-  end
-  global.get $~lib/rt/itcms/white
+  i32.store offset=8
   local.get $1
-  i32.const 20
-  i32.sub
-  local.tee $1
-  i32.load offset=4
-  i32.const 3
-  i32.and
-  i32.eq
   if
-   local.get $0
+   global.get $~lib/rt/itcms/white
+   local.get $1
    i32.const 20
    i32.sub
+   local.tee $1
    i32.load offset=4
    i32.const 3
    i32.and
-   local.tee $0
-   global.get $~lib/rt/itcms/white
-   i32.eqz
    i32.eq
    if
-    local.get $1
-    call $~lib/rt/itcms/Object#makeGray
-   else
-    global.get $~lib/rt/itcms/state
-    i32.const 1
-    i32.eq
     local.get $0
+    i32.const 20
+    i32.sub
+    i32.load offset=4
     i32.const 3
-    i32.eq
     i32.and
+    local.tee $0
+    global.get $~lib/rt/itcms/white
+    i32.eqz
+    i32.eq
     if
      local.get $1
      call $~lib/rt/itcms/Object#makeGray
+    else
+     global.get $~lib/rt/itcms/state
+     i32.const 1
+     i32.eq
+     local.get $0
+     i32.const 3
+     i32.eq
+     i32.and
+     if
+      local.get $1
+      call $~lib/rt/itcms/Object#makeGray
+     end
     end
    end
   end
- )
- (func $~lib/array/Array<u32>#set:buffer (param $0 i32) (param $1 i32)
-  local.get $0
-  local.get $1
-  i32.store
-  local.get $0
-  local.get $1
-  call $~lib/rt/itcms/__link
  )
  (func $~lib/math/murmurHash3 (param $0 i64) (result i64)
   local.get $0
@@ -1380,116 +1363,72 @@
   i32.shr_u
   i32.xor
  )
- (func $~lib/array/ensureCapacity (param $0 i32) (param $1 i32)
-  (local $2 i32)
-  (local $3 i32)
-  (local $4 i32)
-  local.get $1
-  local.get $0
-  i32.load offset=8
-  local.tee $2
-  i32.const 2
-  i32.shr_u
-  i32.gt_u
+ (func $as/index/random (result i32)
+  (local $0 i64)
+  (local $1 i64)
+  global.get $~lib/math/random_seeded
+  i32.eqz
   if
-   local.get $1
-   i32.const 268435455
-   i32.gt_u
+   call $~lib/builtins/seed
+   i64.reinterpret_f64
+   local.tee $0
+   i64.eqz
    if
-    i32.const 1056
-    i32.const 1104
-    i32.const 19
-    i32.const 48
-    call $~lib/builtins/abort
-    unreachable
-   end
-   block $__inlined_func$~lib/rt/itcms/__renew
-    local.get $2
-    i32.const 1
-    i32.shl
-    local.tee $2
-    i32.const 1073741820
-    local.get $2
-    i32.const 1073741820
-    i32.lt_u
-    select
-    local.tee $2
-    local.get $1
-    i32.const 8
-    local.get $1
-    i32.const 8
-    i32.gt_u
-    select
-    i32.const 2
-    i32.shl
-    local.tee $1
-    local.get $1
-    local.get $2
-    i32.lt_u
-    select
-    local.tee $3
-    local.get $0
-    i32.load
-    local.tee $2
-    i32.const 20
-    i32.sub
-    local.tee $4
-    i32.load
-    i32.const -4
-    i32.and
-    i32.const 16
-    i32.sub
-    i32.le_u
-    if
-     local.get $4
-     local.get $3
-     i32.store offset=16
-     local.get $2
-     local.set $1
-     br $__inlined_func$~lib/rt/itcms/__renew
-    end
-    local.get $3
-    local.get $4
-    i32.load offset=12
-    call $~lib/rt/itcms/__new
-    local.tee $1
-    local.get $2
-    local.get $3
-    local.get $4
-    i32.load offset=16
-    local.tee $4
-    local.get $3
-    local.get $4
-    i32.lt_u
-    select
-    memory.copy
-   end
-   local.get $1
-   local.get $2
-   i32.ne
-   if
-    local.get $0
-    local.get $1
-    i32.store
-    local.get $0
-    local.get $1
-    i32.store offset=4
-    local.get $0
-    local.get $1
-    call $~lib/rt/itcms/__link
+    i64.const -7046029254386353131
+    local.set $0
    end
    local.get $0
-   local.get $3
-   i32.store offset=8
+   call $~lib/math/murmurHash3
+   global.set $~lib/math/random_state0_64
+   global.get $~lib/math/random_state0_64
+   i64.const -1
+   i64.xor
+   call $~lib/math/murmurHash3
+   global.set $~lib/math/random_state1_64
+   local.get $0
+   i32.wrap_i64
+   call $~lib/math/splitMix32
+   global.set $~lib/math/random_state0_32
+   global.get $~lib/math/random_state0_32
+   call $~lib/math/splitMix32
+   drop
+   i32.const 1
+   global.set $~lib/math/random_seeded
   end
- )
- (func $as/index/Board#set:cells (param $0 i32) (param $1 i32)
+  global.get $~lib/math/random_state0_64
+  local.set $1
+  global.get $~lib/math/random_state1_64
+  local.tee $0
+  global.set $~lib/math/random_state0_64
   local.get $0
   local.get $1
-  i32.store offset=8
-  local.get $0
   local.get $1
-  call $~lib/rt/itcms/__link
+  i64.const 23
+  i64.shl
+  i64.xor
+  local.tee $1
+  i64.const 17
+  i64.shr_u
+  local.get $1
+  i64.xor
+  i64.xor
+  local.get $0
+  i64.const 26
+  i64.shr_u
+  i64.xor
+  global.set $~lib/math/random_state1_64
+  local.get $0
+  i64.const 12
+  i64.shr_u
+  i64.const 4607182418800017408
+  i64.or
+  f64.reinterpret_i64
+  f64.const 1
+  f64.sub
+  f64.const 1e7
+  f64.mul
+  f64.trunc
+  i32.trunc_sat_f64_u
  )
  (func $~lib/staticarray/StaticArray<u32>#__set (param $0 i32) (param $1 i32) (param $2 i32)
   local.get $1
@@ -1501,8 +1440,8 @@
   i32.shr_u
   i32.ge_u
   if
-   i32.const 1344
-   i32.const 1552
+   i32.const 1360
+   i32.const 1104
    i32.const 133
    i32.const 41
    call $~lib/builtins/abort
@@ -1526,8 +1465,8 @@
   i32.shr_u
   i32.ge_u
   if
-   i32.const 1344
-   i32.const 1552
+   i32.const 1360
+   i32.const 1104
    i32.const 118
    i32.const 41
    call $~lib/builtins/abort
@@ -1540,174 +1479,178 @@
   i32.add
   i32.load
  )
- (func $as/index/shuffleBoard
-  (local $0 i32)
+ (func $as/index/shuffleBoard (param $0 i32)
   (local $1 i32)
   (local $2 i32)
   (local $3 i32)
-  global.get $as/index/target
+  (local $4 i32)
+  local.get $0
   i32.load
   i32.const 1
   i32.shl
-  local.set $1
+  local.set $2
   loop $while-continue|0
-   local.get $1
-   local.tee $0
+   local.get $2
+   local.tee $1
    i32.const 1
    i32.sub
-   local.set $1
-   local.get $0
+   local.set $2
+   local.get $1
    if
     call $as/index/random
-    global.get $as/index/target
+    local.get $0
     i32.load offset=4
     i32.rem_u
-    local.tee $2
+    local.tee $3
     call $as/index/random
-    global.get $as/index/target
+    local.get $0
     i32.load offset=4
     i32.rem_u
-    local.tee $0
+    local.tee $1
     i32.ne
     if
-     local.get $2
-     global.get $as/index/target
-     i32.load offset=4
-     i32.mul
-     local.set $3
+     local.get $3
      local.get $0
-     global.get $as/index/target
      i32.load offset=4
      i32.mul
-     local.set $0
+     local.set $4
+     local.get $1
+     local.get $0
+     i32.load offset=4
+     i32.mul
+     local.set $1
      i32.const 0
-     local.set $2
+     local.set $3
      loop $for-loop|1
-      local.get $2
-      global.get $as/index/target
+      local.get $3
+      local.get $0
       i32.load offset=4
       i32.lt_u
       if
-       local.get $3
        local.get $0
+       local.get $4
+       local.get $1
        call $as/index/_swapRows
+       local.get $4
+       i32.const 1
+       i32.add
+       local.set $4
+       local.get $1
+       i32.const 1
+       i32.add
+       local.set $1
        local.get $3
        i32.const 1
        i32.add
        local.set $3
-       local.get $0
-       i32.const 1
-       i32.add
-       local.set $0
-       local.get $2
-       i32.const 1
-       i32.add
-       local.set $2
        br $for-loop|1
       end
      end
     end
     call $as/index/random
-    global.get $as/index/target
+    local.get $0
     i32.load offset=4
     i32.rem_u
-    local.tee $2
+    local.tee $3
     call $as/index/random
-    global.get $as/index/target
+    local.get $0
     i32.load offset=4
     i32.rem_u
-    local.tee $0
+    local.tee $1
     i32.ne
     if
-     local.get $2
-     global.get $as/index/target
-     i32.load offset=4
-     i32.mul
-     local.set $2
+     local.get $3
      local.get $0
-     global.get $as/index/target
      i32.load offset=4
      i32.mul
      local.set $3
+     local.get $1
+     local.get $0
+     i32.load offset=4
+     i32.mul
+     local.set $4
      i32.const 0
-     local.set $0
+     local.set $1
      loop $for-loop|2
+      local.get $1
       local.get $0
-      global.get $as/index/target
       i32.load offset=4
       i32.lt_u
       if
-       local.get $2
+       local.get $0
        local.get $3
+       local.get $4
        call $as/index/_swapColumns
-       local.get $2
-       i32.const 1
-       i32.add
-       local.set $2
        local.get $3
        i32.const 1
        i32.add
        local.set $3
-       local.get $0
+       local.get $4
        i32.const 1
        i32.add
-       local.set $0
+       local.set $4
+       local.get $1
+       i32.const 1
+       i32.add
+       local.set $1
        br $for-loop|2
       end
      end
     end
     call $as/index/random
-    global.get $as/index/target
+    local.get $0
     i32.load offset=4
     i32.rem_u
-    global.get $as/index/target
+    local.get $0
     i32.load offset=4
     i32.mul
-    local.tee $0
+    local.tee $1
     call $as/index/random
-    global.get $as/index/target
-    i32.load offset=4
-    i32.rem_u
-    i32.add
-    local.tee $2
     local.get $0
-    call $as/index/random
-    global.get $as/index/target
     i32.load offset=4
     i32.rem_u
     i32.add
-    local.tee $0
+    local.tee $3
+    local.get $1
+    call $as/index/random
+    local.get $0
+    i32.load offset=4
+    i32.rem_u
+    i32.add
+    local.tee $1
     i32.ne
     if
-     local.get $2
      local.get $0
+     local.get $3
+     local.get $1
      call $as/index/_swapRows
     end
     call $as/index/random
-    global.get $as/index/target
+    local.get $0
     i32.load offset=4
     i32.rem_u
-    global.get $as/index/target
+    local.get $0
     i32.load offset=4
     i32.mul
-    local.tee $0
+    local.tee $1
     call $as/index/random
-    global.get $as/index/target
-    i32.load offset=4
-    i32.rem_u
-    i32.add
-    local.tee $2
     local.get $0
-    call $as/index/random
-    global.get $as/index/target
     i32.load offset=4
     i32.rem_u
     i32.add
-    local.tee $0
+    local.tee $3
+    local.get $1
+    call $as/index/random
+    local.get $0
+    i32.load offset=4
+    i32.rem_u
+    i32.add
+    local.tee $1
     i32.ne
     if
-     local.get $2
      local.get $0
+     local.get $3
+     local.get $1
      call $as/index/_swapColumns
     end
     br $while-continue|0
@@ -1716,33 +1659,23 @@
  )
  (func $~lib/rt/__visit_members (param $0 i32)
   block $invalid
-   block $~lib/array/Array<u32>
-    block $~lib/staticarray/StaticArray<u32>
-     block $as/index/Board
-      block $~lib/arraybuffer/ArrayBufferView
-       block $~lib/string/String
-        block $~lib/arraybuffer/ArrayBuffer
-         local.get $0
-         i32.const 8
-         i32.sub
-         i32.load
-         br_table $~lib/arraybuffer/ArrayBuffer $~lib/string/String $~lib/arraybuffer/ArrayBufferView $as/index/Board $~lib/staticarray/StaticArray<u32> $~lib/array/Array<u32> $invalid
-        end
-        return
+   block $~lib/staticarray/StaticArray<u32>
+    block $as/index/Board
+     block $~lib/arraybuffer/ArrayBufferView
+      block $~lib/string/String
+       block $~lib/arraybuffer/ArrayBuffer
+        local.get $0
+        i32.const 8
+        i32.sub
+        i32.load
+        br_table $~lib/arraybuffer/ArrayBuffer $~lib/string/String $~lib/arraybuffer/ArrayBufferView $as/index/Board $~lib/staticarray/StaticArray<u32> $invalid
        end
        return
-      end
-      local.get $0
-      i32.load
-      local.tee $0
-      if
-       local.get $0
-       call $~lib/rt/itcms/__visit
       end
       return
      end
      local.get $0
-     i32.load offset=8
+     i32.load
      local.tee $0
      if
       local.get $0
@@ -1750,11 +1683,15 @@
      end
      return
     end
+    local.get $0
+    i32.load offset=8
+    local.tee $0
+    if
+     local.get $0
+     call $~lib/rt/itcms/__visit
+    end
     return
    end
-   local.get $0
-   i32.load
-   call $~lib/rt/itcms/__visit
    return
   end
   unreachable
@@ -1763,268 +1700,41 @@
   memory.size
   i32.const 16
   i32.shl
-  i32.const 18036
+  i32.const 17980
   i32.sub
   i32.const 1
   i32.shr_u
   global.set $~lib/rt/itcms/threshold
-  i32.const 1264
+  i32.const 1280
   call $~lib/rt/itcms/initLazy
   global.set $~lib/rt/itcms/pinSpace
-  i32.const 1296
+  i32.const 1312
   call $~lib/rt/itcms/initLazy
   global.set $~lib/rt/itcms/toSpace
-  i32.const 1440
+  i32.const 1456
   call $~lib/rt/itcms/initLazy
   global.set $~lib/rt/itcms/fromSpace
  )
  (func $~stack_check
   global.get $~lib/memory/__stack_pointer
-  i32.const 1652
+  i32.const 1596
   i32.lt_s
   if
-   i32.const 18064
-   i32.const 18112
+   i32.const 18000
+   i32.const 18048
    i32.const 1
    i32.const 1
    call $~lib/builtins/abort
    unreachable
   end
  )
- (func $as/index/initRandomTable
-  (local $0 i64)
-  (local $1 i32)
-  (local $2 i32)
-  (local $3 i32)
-  (local $4 i64)
-  global.get $~lib/memory/__stack_pointer
-  i32.const 4
-  i32.sub
-  global.set $~lib/memory/__stack_pointer
-  call $~stack_check
-  global.get $~lib/memory/__stack_pointer
-  i32.const 0
-  i32.store
-  global.get $~lib/memory/__stack_pointer
-  i32.const 8
-  i32.sub
-  global.set $~lib/memory/__stack_pointer
-  call $~stack_check
-  global.get $~lib/memory/__stack_pointer
-  i64.const 0
-  i64.store
-  global.get $~lib/memory/__stack_pointer
-  i32.const 16
-  i32.const 5
-  call $~lib/rt/itcms/__new
-  local.tee $2
-  i32.store
-  local.get $2
-  i32.const 0
-  call $~lib/array/Array<u32>#set:buffer
-  local.get $2
-  i32.const 0
-  i32.store offset=4
-  local.get $2
-  i32.const 0
-  i32.store offset=8
-  local.get $2
-  i32.const 0
-  i32.store offset=12
-  global.get $~lib/memory/__stack_pointer
-  i32.const 400
-  i32.const 0
-  call $~lib/rt/itcms/__new
-  local.tee $3
-  i32.store offset=4
-  local.get $2
-  local.get $3
-  call $~lib/array/Array<u32>#set:buffer
-  local.get $2
-  local.get $3
-  i32.store offset=4
-  local.get $2
-  i32.const 400
-  i32.store offset=8
-  local.get $2
-  i32.const 100
-  i32.store offset=12
-  global.get $~lib/memory/__stack_pointer
-  i32.const 8
-  i32.add
-  global.set $~lib/memory/__stack_pointer
-  local.get $2
-  global.set $as/index/randomTable
-  loop $for-loop|0
-   local.get $1
-   i32.const 1000
-   i32.lt_s
-   if
-    global.get $~lib/memory/__stack_pointer
-    global.get $as/index/randomTable
-    local.tee $2
-    i32.store
-    global.get $~lib/math/random_seeded
-    i32.eqz
-    if
-     call $~lib/builtins/seed
-     i64.reinterpret_f64
-     local.tee $0
-     i64.eqz
-     if
-      i64.const -7046029254386353131
-      local.set $0
-     end
-     local.get $0
-     call $~lib/math/murmurHash3
-     global.set $~lib/math/random_state0_64
-     global.get $~lib/math/random_state0_64
-     i64.const -1
-     i64.xor
-     call $~lib/math/murmurHash3
-     global.set $~lib/math/random_state1_64
-     local.get $0
-     i32.wrap_i64
-     call $~lib/math/splitMix32
-     global.set $~lib/math/random_state0_32
-     global.get $~lib/math/random_state0_32
-     call $~lib/math/splitMix32
-     drop
-     i32.const 1
-     global.set $~lib/math/random_seeded
-    end
-    global.get $~lib/math/random_state0_64
-    local.set $4
-    global.get $~lib/math/random_state1_64
-    local.tee $0
-    global.set $~lib/math/random_state0_64
-    local.get $0
-    local.get $4
-    local.get $4
-    i64.const 23
-    i64.shl
-    i64.xor
-    local.tee $4
-    i64.const 17
-    i64.shr_u
-    local.get $4
-    i64.xor
-    i64.xor
-    local.get $0
-    i64.const 26
-    i64.shr_u
-    i64.xor
-    global.set $~lib/math/random_state1_64
-    local.get $1
-    local.get $2
-    i32.load offset=12
-    i32.ge_u
-    if
-     local.get $1
-     i32.const 0
-     i32.lt_s
-     if
-      i32.const 1344
-      i32.const 1104
-      i32.const 130
-      i32.const 22
-      call $~lib/builtins/abort
-      unreachable
-     end
-     local.get $2
-     local.get $1
-     i32.const 1
-     i32.add
-     local.tee $3
-     call $~lib/array/ensureCapacity
-     local.get $2
-     local.get $3
-     i32.store offset=12
-    end
-    local.get $2
-    i32.load offset=4
-    local.get $1
-    i32.const 2
-    i32.shl
-    i32.add
-    local.get $0
-    i64.const 12
-    i64.shr_u
-    i64.const 4607182418800017408
-    i64.or
-    f64.reinterpret_i64
-    f64.const 1
-    f64.sub
-    f64.const 1e7
-    f64.mul
-    f64.trunc
-    i32.trunc_sat_f64_u
-    i32.store
-    local.get $1
-    i32.const 1
-    i32.add
-    local.set $1
-    br $for-loop|0
-   end
-  end
-  global.get $~lib/memory/__stack_pointer
-  i32.const 4
-  i32.add
-  global.set $~lib/memory/__stack_pointer
- )
- (func $as/index/random (result i32)
-  (local $0 i32)
-  (local $1 i32)
-  global.get $~lib/memory/__stack_pointer
-  i32.const 4
-  i32.sub
-  global.set $~lib/memory/__stack_pointer
-  call $~stack_check
-  global.get $~lib/memory/__stack_pointer
-  i32.const 0
-  i32.store
-  global.get $as/index/randomIndex
-  i32.const 1
-  i32.add
-  global.set $as/index/randomIndex
-  global.get $~lib/memory/__stack_pointer
-  global.get $as/index/randomTable
-  local.tee $0
-  i32.store
-  global.get $as/index/randomIndex
-  i32.const 100
-  i32.rem_u
-  local.tee $1
-  local.get $0
-  i32.load offset=12
-  i32.ge_u
-  if
-   i32.const 1344
-   i32.const 1104
-   i32.const 114
-   i32.const 42
-   call $~lib/builtins/abort
-   unreachable
-  end
-  local.get $0
-  i32.load offset=4
-  local.get $1
-  i32.const 2
-  i32.shl
-  i32.add
-  i32.load
-  global.get $~lib/memory/__stack_pointer
-  i32.const 4
-  i32.add
-  global.set $~lib/memory/__stack_pointer
- )
- (func $as/index/fillDefaultBoard
-  (local $0 i32)
+ (func $as/index/fillDefaultBoard (param $0 i32)
   (local $1 i32)
   (local $2 i32)
   (local $3 i32)
   (local $4 i32)
   (local $5 i32)
+  (local $6 i32)
   global.get $~lib/memory/__stack_pointer
   i32.const 4
   i32.sub
@@ -2034,72 +1744,72 @@
   i32.const 0
   i32.store
   call $as/index/random
-  global.get $as/index/target
+  local.get $0
   i32.load
   i32.rem_u
-  local.set $4
+  local.set $5
   loop $for-loop|0
-   local.get $1
-   global.get $as/index/target
+   local.get $2
+   local.get $0
    i32.load
    i32.lt_u
    if
-    local.get $1
-    global.get $as/index/target
+    local.get $2
+    local.get $0
     i32.load offset=4
     i32.div_u
     f64.convert_i32_u
     f64.trunc
     i32.trunc_sat_f64_u
-    local.get $1
-    global.get $as/index/target
+    local.get $2
+    local.get $0
     i32.load offset=4
     i32.mul
     i32.add
-    local.get $4
+    local.get $5
     i32.add
-    local.set $0
+    local.set $1
     i32.const 0
-    local.set $2
+    local.set $3
     loop $for-loop|1
-     local.get $2
-     global.get $as/index/target
+     local.get $3
+     local.get $0
      i32.load
      i32.lt_u
      if
+      local.get $1
       local.get $0
-      global.get $as/index/target
       i32.load
       i32.rem_u
-      local.set $0
+      local.set $1
       global.get $~lib/memory/__stack_pointer
-      global.get $as/index/target
+      local.get $0
       i32.load offset=8
-      local.tee $5
+      local.tee $6
       i32.store
-      local.get $5
-      local.get $3
-      local.get $0
+      local.get $6
+      local.get $4
+      local.get $1
       call $~lib/staticarray/StaticArray<u32>#__set
-      local.get $0
+      local.get $1
       i32.const 1
       i32.add
-      local.set $0
+      local.set $1
+      local.get $4
+      i32.const 1
+      i32.add
+      local.set $4
       local.get $3
       i32.const 1
       i32.add
       local.set $3
-      local.get $2
-      i32.const 1
-      i32.add
-      local.set $2
       br $for-loop|1
      end
     end
-    local.get $1
+    local.get $2
     i32.const 1
     i32.add
-    local.set $1
+    local.set $2
     br $for-loop|0
    end
   end
@@ -2108,11 +1818,11 @@
   i32.add
   global.set $~lib/memory/__stack_pointer
  )
- (func $as/index/_swapRows (param $0 i32) (param $1 i32)
-  (local $2 i32)
+ (func $as/index/_swapRows (param $0 i32) (param $1 i32) (param $2 i32)
   (local $3 i32)
   (local $4 i32)
   (local $5 i32)
+  (local $6 i32)
   global.get $~lib/memory/__stack_pointer
   i32.const 8
   i32.sub
@@ -2121,60 +1831,56 @@
   global.get $~lib/memory/__stack_pointer
   i64.const 0
   i64.store
-  local.get $0
-  global.get $as/index/target
-  i32.load
-  i32.mul
-  local.set $0
   local.get $1
-  global.get $as/index/target
+  local.get $0
   i32.load
   i32.mul
   local.set $1
+  local.get $2
+  local.get $0
+  i32.load
+  i32.mul
+  local.set $2
   loop $for-loop|0
-   local.get $2
-   global.get $as/index/target
+   local.get $3
+   local.get $0
    i32.load
    i32.lt_u
    if
     global.get $~lib/memory/__stack_pointer
-    global.get $as/index/target
-    i32.load offset=8
-    local.tee $3
-    i32.store
-    local.get $3
     local.get $0
-    call $~lib/staticarray/StaticArray<u32>#__get
-    local.set $4
-    global.get $~lib/memory/__stack_pointer
-    global.get $as/index/target
     i32.load offset=8
-    local.tee $3
+    local.tee $4
     i32.store
-    global.get $~lib/memory/__stack_pointer
-    global.get $as/index/target
-    i32.load offset=8
-    local.tee $5
-    i32.store offset=4
-    local.get $3
-    local.get $0
-    local.get $5
-    local.get $1
-    call $~lib/staticarray/StaticArray<u32>#__get
-    call $~lib/staticarray/StaticArray<u32>#__set
-    global.get $~lib/memory/__stack_pointer
-    global.get $as/index/target
-    i32.load offset=8
-    local.tee $3
-    i32.store
-    local.get $3
-    local.get $1
     local.get $4
-    call $~lib/staticarray/StaticArray<u32>#__set
+    local.get $1
+    call $~lib/staticarray/StaticArray<u32>#__get
+    local.set $5
+    global.get $~lib/memory/__stack_pointer
     local.get $0
-    i32.const 1
-    i32.add
-    local.set $0
+    i32.load offset=8
+    local.tee $4
+    i32.store
+    global.get $~lib/memory/__stack_pointer
+    local.get $0
+    i32.load offset=8
+    local.tee $6
+    i32.store offset=4
+    local.get $4
+    local.get $1
+    local.get $6
+    local.get $2
+    call $~lib/staticarray/StaticArray<u32>#__get
+    call $~lib/staticarray/StaticArray<u32>#__set
+    global.get $~lib/memory/__stack_pointer
+    local.get $0
+    i32.load offset=8
+    local.tee $4
+    i32.store
+    local.get $4
+    local.get $2
+    local.get $5
+    call $~lib/staticarray/StaticArray<u32>#__set
     local.get $1
     i32.const 1
     i32.add
@@ -2183,6 +1889,10 @@
     i32.const 1
     i32.add
     local.set $2
+    local.get $3
+    i32.const 1
+    i32.add
+    local.set $3
     br $for-loop|0
    end
   end
@@ -2191,11 +1901,11 @@
   i32.add
   global.set $~lib/memory/__stack_pointer
  )
- (func $as/index/_swapColumns (param $0 i32) (param $1 i32)
-  (local $2 i32)
+ (func $as/index/_swapColumns (param $0 i32) (param $1 i32) (param $2 i32)
   (local $3 i32)
   (local $4 i32)
   (local $5 i32)
+  (local $6 i32)
   global.get $~lib/memory/__stack_pointer
   i32.const 8
   i32.sub
@@ -2205,59 +1915,59 @@
   i64.const 0
   i64.store
   loop $for-loop|0
-   local.get $2
-   global.get $as/index/target
+   local.get $3
+   local.get $0
    i32.load
    i32.lt_u
    if
     global.get $~lib/memory/__stack_pointer
-    global.get $as/index/target
-    i32.load offset=8
-    local.tee $3
-    i32.store
-    local.get $3
     local.get $0
-    call $~lib/staticarray/StaticArray<u32>#__get
-    local.set $4
-    global.get $~lib/memory/__stack_pointer
-    global.get $as/index/target
     i32.load offset=8
-    local.tee $3
+    local.tee $4
     i32.store
-    global.get $~lib/memory/__stack_pointer
-    global.get $as/index/target
-    i32.load offset=8
-    local.tee $5
-    i32.store offset=4
-    local.get $3
-    local.get $0
-    local.get $5
-    local.get $1
-    call $~lib/staticarray/StaticArray<u32>#__get
-    call $~lib/staticarray/StaticArray<u32>#__set
-    global.get $~lib/memory/__stack_pointer
-    global.get $as/index/target
-    i32.load offset=8
-    local.tee $3
-    i32.store
-    local.get $3
-    local.get $1
     local.get $4
-    call $~lib/staticarray/StaticArray<u32>#__set
-    local.get $0
-    global.get $as/index/target
-    i32.load
-    i32.add
-    local.set $0
     local.get $1
-    global.get $as/index/target
+    call $~lib/staticarray/StaticArray<u32>#__get
+    local.set $5
+    global.get $~lib/memory/__stack_pointer
+    local.get $0
+    i32.load offset=8
+    local.tee $4
+    i32.store
+    global.get $~lib/memory/__stack_pointer
+    local.get $0
+    i32.load offset=8
+    local.tee $6
+    i32.store offset=4
+    local.get $4
+    local.get $1
+    local.get $6
+    local.get $2
+    call $~lib/staticarray/StaticArray<u32>#__get
+    call $~lib/staticarray/StaticArray<u32>#__set
+    global.get $~lib/memory/__stack_pointer
+    local.get $0
+    i32.load offset=8
+    local.tee $4
+    i32.store
+    local.get $4
+    local.get $2
+    local.get $5
+    call $~lib/staticarray/StaticArray<u32>#__set
+    local.get $1
+    local.get $0
     i32.load
     i32.add
     local.set $1
     local.get $2
-    i32.const 1
+    local.get $0
+    i32.load
     i32.add
     local.set $2
+    local.get $3
+    i32.const 1
+    i32.add
+    local.set $3
     br $for-loop|0
    end
   end
@@ -2323,7 +2033,7 @@
   i32.gt_u
   if
    i32.const 1056
-   i32.const 1552
+   i32.const 1104
    i32.const 91
    i32.const 60
    call $~lib/builtins/abort
@@ -2365,7 +2075,6 @@
   global.get $~lib/memory/__stack_pointer
   i32.const 0
   i32.store
-  call $as/index/initRandomTable
   global.get $~lib/memory/__stack_pointer
   local.get $0
   local.get $1
@@ -2374,7 +2083,9 @@
   i32.store
   local.get $0
   global.set $as/index/target
+  local.get $0
   call $as/index/fillDefaultBoard
+  local.get $0
   call $as/index/shuffleBoard
   local.get $0
   i32.load offset=8
@@ -2394,7 +2105,6 @@
   global.get $~lib/memory/__stack_pointer
   i32.const 0
   i32.store
-  call $as/index/initRandomTable
   loop $do-loop|0
    global.get $~lib/memory/__stack_pointer
    local.get $1
@@ -2404,7 +2114,9 @@
    i32.store
    local.get $4
    global.set $as/index/target
+   local.get $4
    call $as/index/fillDefaultBoard
+   local.get $4
    call $as/index/shuffleBoard
    local.get $0
    local.tee $3

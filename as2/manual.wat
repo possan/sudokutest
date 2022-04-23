@@ -49,7 +49,7 @@
  (data (i32.const 1544) "\01\00\00\00&\00\00\00~\00l\00i\00b\00/\00s\00t\00a\00t\00i\00c\00a\00r\00r\00a\00y\00.\00t\00s")
  (data (i32.const 1600) "\06\00\00\00 \00\00\00\00\00\00\00 ")
  (data (i32.const 1636) "$\01\00\00\00\00\00\00\02\01")
- 
+
  ;; hello
  (export "addTwo" (func $as/index/addTwo))
  (export "randomizeOneBoardWasm" (func $as/index/randomizeOneBoardWasm))

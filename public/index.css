@@ -19,7 +19,7 @@ body {
 
 .board table tr td {
     border: 1px solid #eee;
-    font: 12px monospace;
+    font: 16px monospace;
     text-align: center;
     padding: 5px;
 }
