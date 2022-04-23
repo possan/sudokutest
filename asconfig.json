@@ -1,0 +1,21 @@
+{
+  "targets": {
+    "release": {
+      "outFile": "public/wasm/release.wasm",
+      "textFile": "public/wasm/release.wat",
+      "sourceMap": true,
+      "optimizeLevel": 3,
+      "optimize": "speed",
+      "shrinkLevel": 1,
+      "converge": true,
+      "noAssert": true
+    }
+  },
+  "options": {
+    "bindings": "esm",
+    "simd": true,
+    "reference-types": true,
+    "sign-extension": false,
+    "mutable-globals": false
+  }
+}

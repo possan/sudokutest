@@ -1,0 +1,69 @@
+body {
+    padding: 0;
+    margin: 0;
+}
+
+.page {
+    display:flex;
+}
+
+.page .column {
+    padding: 20px;
+}
+
+.board  table {
+    width: auto;
+    border-collapse: collapse;
+    margin: 0 0 20px 0;
+}
+
+.board table tr td {
+    border: 1px solid #eee;
+    font: 12px monospace;
+    text-align: center;
+    padding: 5px;
+}
+
+.board table tr.r0 td {
+    border-top: 1px solid #888;
+}
+
+.board table.gs2 tr.r1 td,
+.board table.gs2 tr.r3 td {
+    border-bottom: 1px solid #888;
+}
+
+.board table.gs3 tr.r2 td,
+.board table.gs3 tr.r5 td,
+.board table.gs3 tr.r8 td {
+    border-bottom: 1px solid #888;
+}
+
+.board table.gs4 tr.r3 td,
+.board table.gs4 tr.r7 td,
+.board table.gs4 tr.r11 td,
+.board table.gs4 tr.r15 td {
+    border-bottom: 1px solid #888;
+}
+
+.board table tr td.c0 {
+    border-left: 1px solid #888;
+}
+
+.board table.gs2 tr td.c1,
+.board table.gs2 tr td.c3 {
+    border-right: 1px solid #888;
+}
+
+.board table.gs3 tr td.c2,
+.board table.gs3 tr td.c5,
+.board table.gs3 tr td.c8 {
+    border-right: 1px solid #888;
+}
+
+.board table.gs4 tr td.c3,
+.board table.gs4 tr td.c7,
+.board table.gs4 tr td.c11,
+.board table.gs4 tr td.c15 {
+    border-right: 1px solid #888;
+}
